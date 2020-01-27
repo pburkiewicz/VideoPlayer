@@ -6,3 +6,7 @@
 - Ostatni rodzaj to interaktywne pytania. Pytania takie zatrzymują odtwarzanie wideo i po wybraniu opcji przykładowo przechodzą do innej sekcji filmu. Przy użyciu pytań można dynamicznie sterować tym co użytkownik zobaczy w danym filmie.
 - Aplikacja umożliwia przechowywanie adnotacji w specyficznym dla aplikacji formacie.
 - (*) Możliwe jest odtwarzanie wideo dostępnego online (np.: z YouTube)
+
+
+Wymagane pakiety do obsługi video w QT:
+sudo apt-get install qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5
