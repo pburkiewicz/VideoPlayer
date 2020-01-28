@@ -47,8 +47,15 @@ void MainWindow::on_actionChoose_file_triggered()
 void MainWindow::on_fullscreen_return()
 {
     qDebug()<<"XD";
+
+    for (int i=0; i<100;++i)
+    {
+    display->setParent(nullptr);
+    display->setParent(this);
+    display->setFullScreen(0);
     display->showNormal();
     this->setCentralWidget(display);
+    }
 }
 
 void MainWindow::on_actionPlay_triggered()

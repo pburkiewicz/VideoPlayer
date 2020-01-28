@@ -11,7 +11,7 @@ void VideoWidget::keyPressEvent(QKeyEvent *key)
     if(key->key()==Qt::Key_Escape && isFullScreen())
     {
         qDebug()<<"Or here!!";
-        setFullScreen(false);
+        //setFullScreen(false);
         setParent(my_parent);
         emit fullscreen_return();
         key->accept();
