@@ -17,8 +17,8 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>330</y>
+      <x>70</x>
+      <y>370</y>
       <width>391</width>
       <height>35</height>
      </rect>
@@ -46,7 +46,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pauseButton">
+      <widget class="QToolButton" name="pauseButton">
        <property name="text">
         <string>Pause</string>
        </property>
@@ -89,6 +89,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionChoose_file">

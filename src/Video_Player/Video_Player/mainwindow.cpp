@@ -1,16 +1,28 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QDockWidget>
+#include <QStyle>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+//    QWidget* cw= new QWidget;
+//    QDockWidget *dockWidget = new QDockWidget(tr("Dock Widget"), this);
+//    dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea |
+//                                   Qt::RightDockWidgetArea);
+//    //dockWidget->setWidget(dockWidgetContents);
+//    addDockWidget(Qt::LeftDockWidgetArea, dockWidget);
+
     ui->setupUi(this);
     player = new QMediaPlayer(this);
     display = new VideoWidget(this);
     player->setVideoOutput(display);
     this->setCentralWidget(display);
+
+
     //setWindowState(Qt::WindowMaximized);
 
 
@@ -25,7 +37,17 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(display,&VideoWidget::fullscreen_return,this,&MainWindow::on_fullscreen_return);
     //display->showFullScreen();
     volume = new QSlider(this);
+
+    ui->mainToolBar->addWidget(ui->PlayButton);
+    ui->mainToolBar->addWidget(ui->pauseButton);
+    ui->mainToolBar->addWidget(ui->stopButton);
     ui->statusBar->addPermanentWidget(volume);
+
+    ui->pauseButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
+    ui->PlayButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+    ui->stopButton->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
+    //connect( ui->pauseButton, &QAbstractButton::clicked, this, &MainWindow::on_actionPause_triggered);
+
     qDebug()<<"It's me!!";
 }
 
