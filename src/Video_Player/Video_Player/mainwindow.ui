@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -74,6 +74,7 @@
     <property name="title">
      <string>Video</string>
     </property>
+    <addaction name="actionFullScreen"/>
     <addaction name="actionPlay"/>
     <addaction name="actionPause"/>
     <addaction name="actionStop"/>
@@ -108,6 +109,11 @@
   <action name="actionStop">
    <property name="text">
     <string>Stop</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="text">
+    <string>FullScreen</string>
    </property>
   </action>
  </widget>

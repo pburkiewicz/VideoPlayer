@@ -41,9 +41,10 @@ void MainWindow::on_actionChoose_file_triggered()
 
     player->setMedia(QUrl::fromLocalFile(File));
     on_actionPlay_triggered();
-    display->setParent(NULL);
-    display->showFullScreen();
+    
 }
+
+void MainWindow::
 
 void MainWindow::on_actionPlay_triggered()
 {
@@ -58,6 +59,12 @@ void MainWindow::on_actionPause_triggered()
 void MainWindow::on_actionStop_triggered()
 {
     player->stop();
+}
+
+void MainWindow::on_actionFullScreen_triggered()
+{
+    display->setParent(NULL);
+    display->showFullScreen();
 }
 
 void MainWindow::on_fileButton_clicked()
