@@ -133,3 +133,13 @@ void MainWindow::on_pauseButton_clicked()
 {
     on_actionPause_triggered();
 }
+
+
+void MainWindow::keyPressEvent(QKeyEvent *key)
+{
+    if(key->key()==Qt::Key_Escape ||key->key()==Qt::Key_T )
+    {
+        on_actionFullScreen_triggered();
+    }
+
+}

@@ -22,6 +22,8 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    void keyPressEvent(QKeyEvent* key);
 
 private slots:
 
