@@ -3,10 +3,11 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
-#include <QVideoWidget>
+#include "videowidget.h"
 #include <QFileDialog>
-#include <QProgressBar>
 #include <QSlider>
+#include <QKeyEvent>
+#include <QDebug>
 
 
 namespace Ui {
@@ -21,7 +22,11 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
 private slots:
+
+
+
     void on_actionChoose_file_triggered();
 
     void on_actionPlay_triggered();
@@ -30,19 +35,22 @@ private slots:
 
     void on_actionStop_triggered();
 
+    void on_actionFullScreen_triggered();
+
     void on_fileButton_clicked();
 
     void on_PlayButton_clicked();
 
     void on_stopButton_clicked();
 
-
     void on_pauseButton_clicked();
+
+    void on_fullscreen_return();
 
 private:
     Ui::MainWindow *ui;
     QMediaPlayer* player;
-    QVideoWidget* display;
+    VideoWidget* display;
     QSlider* volume;
     QSlider* slider;
 };

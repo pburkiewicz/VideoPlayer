@@ -8,11 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     player = new QMediaPlayer(this);
-    display = new QVideoWidget(this);
+    display = new VideoWidget(this);
     player->setVideoOutput(display);
     this->setCentralWidget(display);
     //setWindowState(Qt::WindowMaximized);
-    display->setWindowState(display->windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
+
 
     slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
@@ -22,10 +22,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(player,&QMediaPlayer::durationChanged,slider,&QSlider::setMaximum);
     connect(player,&QMediaPlayer::positionChanged,slider,&QSlider::setValue);
     connect(slider,&QSlider::sliderMoved,player,&QMediaPlayer::setPosition);
+    connect(display,&VideoWidget::fullscreen_return,this,&MainWindow::on_fullscreen_return);
     //display->showFullScreen();
     volume = new QSlider(this);
     ui->statusBar->addPermanentWidget(volume);
-
+    qDebug()<<"It's me!!";
 }
 
 MainWindow::~MainWindow()
@@ -41,8 +42,13 @@ void MainWindow::on_actionChoose_file_triggered()
 
     player->setMedia(QUrl::fromLocalFile(File));
     on_actionPlay_triggered();
-    display->setParent(NULL);
-    display->showFullScreen();
+}
+
+void MainWindow::on_fullscreen_return()
+{
+    qDebug()<<"XD";
+    display->showNormal();
+    this->setCentralWidget(display);
 }
 
 void MainWindow::on_actionPlay_triggered()
@@ -60,19 +66,27 @@ void MainWindow::on_actionStop_triggered()
     player->stop();
 }
 
+void MainWindow::on_actionFullScreen_triggered()
+{
+
+    display->setParent(nullptr);
+    display->showFullScreen();
+
+}
+
 void MainWindow::on_fileButton_clicked()
 {
-on_actionChoose_file_triggered();
+    on_actionChoose_file_triggered();
 }
 
 void MainWindow::on_PlayButton_clicked()
 {
-on_actionPlay_triggered();
+    on_actionPlay_triggered();
 }
 
 void MainWindow::on_stopButton_clicked()
 {
-on_actionStop_triggered();
+    on_actionStop_triggered();
 }
 
 
