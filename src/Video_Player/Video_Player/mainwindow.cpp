@@ -36,11 +36,21 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(slider,&QSlider::sliderMoved,player,&QMediaPlayer::setPosition);
     connect(display,&VideoWidget::fullscreen_return,this,&MainWindow::on_fullscreen_return);
     //display->showFullScreen();
-    volume = new QSlider(this);
+
 
     ui->mainToolBar->addWidget(ui->PlayButton);
     ui->mainToolBar->addWidget(ui->pauseButton);
     ui->mainToolBar->addWidget(ui->stopButton);
+
+
+    volume = new QSlider(this);
+    volume->setOrientation(Qt::Horizontal);
+    volume->setMaximum(100);
+    volume->setValue(50);
+    volume->setStyleSheet("color:red;");
+
+    connect(volume, &QSlider::sliderMoved,player,&QMediaPlayer::setVolume);
+
     ui->statusBar->addPermanentWidget(volume);
 
     ui->pauseButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
