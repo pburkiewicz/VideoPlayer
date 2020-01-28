@@ -8,6 +8,7 @@
 #include <QSlider>
 #include <QKeyEvent>
 #include <QDebug>
+#include <QLabel>
 
 
 namespace Ui {
@@ -55,6 +56,7 @@ private:
     VideoWidget* display;
     QSlider* volume;
     QSlider* slider;
+    QLabel* subtitle;
 };
 
 #endif // MAINWINDOW_H

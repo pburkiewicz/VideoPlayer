@@ -23,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setCentralWidget(display);
 
 
-    //setWindowState(Qt::WindowMaximized);
 
 
     slider = new QSlider(this);
@@ -35,30 +34,36 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(player,&QMediaPlayer::positionChanged,slider,&QSlider::setValue);
     connect(slider,&QSlider::valueChanged,player,&QMediaPlayer::setPosition);
     connect(display,&VideoWidget::fullscreen_return,this,&MainWindow::on_fullscreen_return);
-    //display->showFullScreen();
 
 
-    ui->mainToolBar->addWidget(ui->PlayButton);
-    ui->mainToolBar->addWidget(ui->pauseButton);
-    ui->mainToolBar->addWidget(ui->stopButton);
 
 
+
+    //volume
     volume = new QSlider(this);
     volume->setOrientation(Qt::Horizontal);
     volume->setMaximum(100);
     volume->setValue(50);
     volume->setStyleSheet("color:red;");
-
     connect(volume, &QSlider::valueChanged,player,&QMediaPlayer::setVolume);
-
     ui->statusBar->addPermanentWidget(volume);
+    //buttons
+    ui->mainToolBar->addWidget(ui->PlayButton);
+    ui->mainToolBar->addWidget(ui->pauseButton);
+    ui->mainToolBar->addWidget(ui->stopButton);
 
     ui->pauseButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
     ui->PlayButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     ui->stopButton->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
-    //connect( ui->pauseButton, &QAbstractButton::clicked, this, &MainWindow::on_actionPause_triggered);
 
-    qDebug()<<"It's me!!";
+    subtitle = new QLabel(display);
+    subtitle->setStyleSheet("color: white");
+    subtitle->setText("Napisy, napisy, napisy");
+    subtitle->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
+    //subtitle->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
+
+    //display->setLocale()
+
 }
 
 MainWindow::~MainWindow()
