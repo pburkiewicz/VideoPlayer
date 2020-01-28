@@ -41,7 +41,6 @@ void MainWindow::on_actionChoose_file_triggered()
 
     player->setMedia(QUrl::fromLocalFile(File));
     on_actionPlay_triggered();
-    
 }
 
 void MainWindow::
