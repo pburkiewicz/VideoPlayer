@@ -50,6 +50,8 @@ private slots:
 
     void on_fullscreen_return();
 
+    void on_FullScreenButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QMediaPlayer* player;
