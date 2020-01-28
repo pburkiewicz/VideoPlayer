@@ -69,7 +69,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionChoose_file_triggered()
 {
-    QString File = QFileDialog::getOpenFileName(this, tr("Choose film file"),"",tr("Video File (*.*)"));
+    QString File = QFileDialog::getOpenFileName(this, tr("Choose film file"),"",tr("Video File (*.avi *3gp *.mp4 *.flv *.ogv)"));
     on_actionStop_triggered();
 
     player->setMedia(QUrl::fromLocalFile(File));
