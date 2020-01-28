@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // temporary - program should calculate procentage of lengt
     connect(player,&QMediaPlayer::durationChanged,slider,&QSlider::setMaximum);
     connect(player,&QMediaPlayer::positionChanged,slider,&QSlider::setValue);
-    connect(slider,&QSlider::sliderMoved,player,&QMediaPlayer::setPosition);
+    connect(slider,&QSlider::valueChanged,player,&QMediaPlayer::setPosition);
     connect(display,&VideoWidget::fullscreen_return,this,&MainWindow::on_fullscreen_return);
     //display->showFullScreen();
 
@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     volume->setValue(50);
     volume->setStyleSheet("color:red;");
 
-    connect(volume, &QSlider::sliderMoved,player,&QMediaPlayer::setVolume);
+    connect(volume, &QSlider::valueChanged,player,&QMediaPlayer::setVolume);
 
     ui->statusBar->addPermanentWidget(volume);
 
@@ -69,7 +69,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionChoose_file_triggered()
 {
-    QString File = QFileDialog::getOpenFileName(this, tr("Choose film file"),"",tr("Video File (*.avi *.3gp *.mp4 *.flv *.ogv *webm)"));
+    QString File = QFileDialog::getOpenFileName(this, tr("Choose film file"),"",tr("Video File (*.avi *.3gp *.mp4 *.flv *.ogv *.webm)"));
     on_actionStop_triggered();
 
     player->setMedia(QUrl::fromLocalFile(File));
