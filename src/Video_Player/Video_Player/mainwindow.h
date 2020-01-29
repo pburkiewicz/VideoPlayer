@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QGraphicsVideoItem>
 #include <QGraphicsView>
+#include "subtitles.h"
 
 
 namespace Ui {
@@ -71,6 +72,8 @@ private:
     QLabel* subtitle;
     QGraphicsScene* scene;
     QGraphicsVideoItem * item;
+    Subtitles subs;
+    Subtitle curr_sub;
 };
 
 #endif // MAINWINDOW_H
