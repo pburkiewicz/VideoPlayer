@@ -28,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(player,&QMediaPlayer::durationChanged,slider,&QSlider::setMaximum);
     connect(player,&QMediaPlayer::positionChanged,slider,&QSlider::setValue);
     connect(slider,&QSlider::valueChanged,player,&QMediaPlayer::setPosition);
-    //connect(display,&VideoWidget::fullscreen_return,this,&MainWindow::on_fullscreen_return);
 
 
     //volume
@@ -78,7 +77,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-
 }
 
 void MainWindow::on_subtitle_change()
@@ -91,6 +89,8 @@ void MainWindow::on_subtitle_choosen()
 {
 
 
+    connect(player,&QMediaPlayer::positionChanged,this,&MainWindow::on_subtitle_change);
+    connect(slider,&QSlider::valueChanged,this,&MainWindow::on_place_change);
 }
 
 void MainWindow::on_place_change()

@@ -56,6 +56,12 @@ private slots:
 
     void on_FullScreenButton_clicked();
 
+    void on_subtitle_change();
+
+    void on_place_change();
+
+    void on_subtitle_choosen();
+
 private:
     Ui::MainWindow *ui;
     QMediaPlayer* player;
