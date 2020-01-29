@@ -53,14 +53,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mainToolBar->addWidget(ui->PlayButton);
     ui->mainToolBar->addWidget(ui->pauseButton);
     ui->mainToolBar->addWidget(ui->stopButton);
+    ui->mainToolBar->addWidget(ui->FullScreenButton);
 
     ui->pauseButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
     ui->PlayButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     ui->stopButton->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
 
-    QTabWidget* tw = new QTabWidget();
-       //tw->addTab(tab_content, "Example");
-       tw->setStyleSheet("QTabBar::tab { background: transparent; }"); //makes the header transparent
 
     subtitle = new QLabel(display);
     subtitle->setStyleSheet("color: white; background-color: red");
@@ -158,4 +156,9 @@ void MainWindow::keyPressEvent(QKeyEvent *key)
         on_actionFullScreen_triggered();
     }
 
+}
+
+void MainWindow::on_FullScreenButton_clicked()
+{
+    on_actionFullScreen_triggered();
 }
