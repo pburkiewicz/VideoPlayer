@@ -15,14 +15,16 @@ MainWindow::MainWindow(QWidget *parent) :
 //                                   Qt::RightDockWidgetArea);
 //    //dockWidget->setWidget(dockWidgetContents);
 //    addDockWidget(Qt::LeftDockWidgetArea, dockWidget);
-
     ui->setupUi(this);
+    auto scene = new QGraphicsScene(this);
+    auto display = new QGraphicsView(scene);
     player = new QMediaPlayer(this);
-    display = new VideoWidget(this);
-    player->setVideoOutput(display);
-    this->setCentralWidget(display);
+    QGraphicsVideoItem *item = new QGraphicsVideoItem;
+    player->setVideoOutput(item);
+    scene->addItem(item);
 
 
+   this->setCentralWidget(display);
 
 
     slider = new QSlider(this);
@@ -33,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(player,&QMediaPlayer::durationChanged,slider,&QSlider::setMaximum);
     connect(player,&QMediaPlayer::positionChanged,slider,&QSlider::setValue);
     connect(slider,&QSlider::valueChanged,player,&QMediaPlayer::setPosition);
-    connect(display,&VideoWidget::fullscreen_return,this,&MainWindow::on_fullscreen_return);
+    //connect(display,&VideoWidget::fullscreen_return,this,&MainWindow::on_fullscreen_return);
 
 
 
@@ -56,11 +58,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->PlayButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     ui->stopButton->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
 
+    QTabWidget* tw = new QTabWidget();
+       //tw->addTab(tab_content, "Example");
+       tw->setStyleSheet("QTabBar::tab { background: transparent; }"); //makes the header transparent
+
     subtitle = new QLabel(display);
-    subtitle->setStyleSheet("color: white");
+    subtitle->setStyleSheet("color: white; background-color: red");
     subtitle->setText("Napisy, napisy, napisy");
     subtitle->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
-    //subtitle->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
+    subtitle->setWindowFlags(Qt::FramelessWindowHint);
+    //subtitle->setAttribute(Qt::WA_OpaquePaintEvent);
+    subtitle->setAttribute(Qt::WA_NoSystemBackground,true);
+
+    subtitle->setGeometry(100,100,100,100);
+    subtitle->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
 
     //display->setLocale()
 
@@ -89,7 +100,7 @@ void MainWindow::on_fullscreen_return()
     {
     display->setParent(nullptr);
     display->setParent(this);
-    display->setFullScreen(0);
+    //display->setFullScreen(0);
     display->showNormal();
     this->setCentralWidget(display);
     }
@@ -113,8 +124,8 @@ void MainWindow::on_actionStop_triggered()
 void MainWindow::on_actionFullScreen_triggered()
 {
 
-    display->setParent(nullptr);
-    display->showFullScreen();
+    //display->setParent(nullptr);
+    //display->showFullScreen();
 
 }
 

@@ -9,7 +9,8 @@
 #include <QKeyEvent>
 #include <QDebug>
 #include <QLabel>
-
+#include <QGraphicsVideoItem>
+#include <QGraphicsView>
 
 namespace Ui {
 class MainWindow;
@@ -53,7 +54,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QMediaPlayer* player;
-    VideoWidget* display;
+    QGraphicsView* display;
     QSlider* volume;
     QSlider* slider;
     QLabel* subtitle;
