@@ -100,6 +100,8 @@
      <string>File</string>
     </property>
     <addaction name="actionChoose_file"/>
+    <addaction name="separator"/>
+    <addaction name="actionAdd_subtitles"/>
    </widget>
    <widget class="QMenu" name="menuVideo">
     <property name="title">
@@ -146,6 +148,11 @@
   <action name="actionFullScreen">
    <property name="text">
     <string>FullScreen</string>
+   </property>
+  </action>
+  <action name="actionAdd_subtitles">
+   <property name="text">
+    <string>Add subtitles</string>
    </property>
   </action>
  </widget>
