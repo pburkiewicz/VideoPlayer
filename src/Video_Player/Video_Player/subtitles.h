@@ -19,11 +19,12 @@ class Subtitles:public QWidget
 {
 public:
     vector <Subtitle> data;
+    int actual=0;
 
     void read();
     void write();
-    void search(int actual_time);
-    //void
+    Subtitle push();
+    void find(int msek);
 };
 
 #endif // SUBTITLES_H
