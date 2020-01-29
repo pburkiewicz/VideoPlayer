@@ -9,7 +9,7 @@ void Subtitles::read()
 {
     //qDebug()<<"ERROR 10";
     fstream plik;
-    plik.open("plik.txt",ios::in);
+    plik.open(this->pathToRead,ios::in);
     if(plik.good()==false)
     {
         qDebug()<<"ERROR open";
@@ -44,7 +44,7 @@ void Subtitles::read()
 }
 
 
-Subtitle Subtitles::push()
+Subtitle Subtitles::pop()
 {
     return this->data[this->actual++];
 }
@@ -64,7 +64,7 @@ void Subtitles::write()
 {
     //qDebug()<<"ERROR 0";
     fstream plik;
-    plik.open("test.txt",ios::app);
+    plik.open(this->pathToWrite,ios::app);
     if(plik.good()==false)
     {
         qDebug()<<"ERROR open";

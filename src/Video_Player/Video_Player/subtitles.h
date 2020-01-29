@@ -20,10 +20,12 @@ class Subtitles:public QWidget
 public:
     vector <Subtitle> data;
     int actual=0;
+    string pathToRead;
+    string pathToWrite;
 
     void read();
     void write();
-    Subtitle push();
+    Subtitle pop();
     void find(int msek);
 };
 
