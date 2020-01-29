@@ -1,12 +1,13 @@
 #include "videowidget.h"
 
-VideoWidget::VideoWidget(QWidget *parent) : QVideoWidget(parent)
+VideoWidget::VideoWidget(QWidget *parent) : QGraphicsView(parent)
 {
     my_parent=parent;
 }
 
 void VideoWidget::keyPressEvent(QKeyEvent *key)
 {
+    /*
      qDebug()<<"I'm here";
     if((key->key()==Qt::Key_Escape ||key->key()==Qt::Key_T ) && isFullScreen())
     {
@@ -18,5 +19,7 @@ void VideoWidget::keyPressEvent(QKeyEvent *key)
     }
     else {
         key->ignore();
-    }
+    }*/
 }
+
+

@@ -9,6 +9,8 @@
 #include <QKeyEvent>
 #include <QDebug>
 #include <QLabel>
+#include <QGraphicsVideoItem>
+#include <QGraphicsView>
 
 
 namespace Ui {
@@ -21,10 +23,12 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 
 protected:
-    void keyPressEvent(QKeyEvent* key);
+
+    void keyPressEvent(QKeyEvent* key)override;
+     void resizeEvent(QResizeEvent *event)override;
 
 private slots:
 
@@ -55,10 +59,12 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QMediaPlayer* player;
-    VideoWidget* display;
+    QGraphicsView* display;
     QSlider* volume;
     QSlider* slider;
     QLabel* subtitle;
+    QGraphicsScene* scene;
+    QGraphicsVideoItem * item;
 };
 
 #endif // MAINWINDOW_H
