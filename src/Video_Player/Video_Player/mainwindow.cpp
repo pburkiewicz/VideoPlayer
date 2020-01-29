@@ -81,15 +81,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_subtitle_change()
 {
-
-    if (player->position()>=curr_sub.begin && subtitle->text()!=QString::fromStdString(curr_sub.contents))
+    qDebug()<<"sub";
+    if ( subtitle->text()!=QString::fromStdString(curr_sub.contents)&& player->position()>=curr_sub.begin )
     {
-        if (player->position()>=curr_sub.end)
-        {
-            curr_sub = subs.pop();
-            return;
-        }
         subtitle->setText(QString::fromStdString(curr_sub.contents));
+    }
+    else if (player->position()>=curr_sub.end)
+    {
+        subtitle->setText("");
+        curr_sub = subs.pop();
+        return;
     }
 }
 
@@ -105,7 +106,8 @@ void MainWindow::on_subtitle_choosen()
 
 void MainWindow::on_place_change()
 {
-
+    subtitle->setText("");
+    qDebug()<<"FIND!";
     find((unsigned long long)player->position());
 
 }
@@ -209,8 +211,10 @@ void MainWindow::on_actionAdd_subtitles_triggered()
     QString File = QFileDialog::getOpenFileName(this, tr("Choose subtitle file"),"",tr("Subtitle File (*.txt)"));
     //on_actionStop_triggered();
     subs.pathToRead= File.toStdString();
+    subs.read();
     connect(player,&QMediaPlayer::positionChanged,this,&MainWindow::on_subtitle_change);
-    connect(slider,&QSlider::valueChanged,this,&MainWindow::on_place_change);
+    connect(slider,&QSlider::sliderReleased,this,&MainWindow::on_place_change);
+    curr_sub=subs.pop();
     //player->setMedia(QUrl::fromLocalFile(File));
     //on_actionPlay_triggered();
 }
