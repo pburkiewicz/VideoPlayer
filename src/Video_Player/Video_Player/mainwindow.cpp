@@ -53,13 +53,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     subtitle = new QLabel(display);
-    subtitle->setStyleSheet("color: red;");
-    subtitle->setText("Napisy, napisy, napisy");
-    subtitle->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
+   // display->setAlignment()
+    subtitle->setStyleSheet("color: red; font-size: 25px;");
+    subtitle->setWordWrap(true);
+    subtitle->setText("Napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy ");
+    subtitle->setAlignment(Qt::AlignBottom | Qt::AlignCenter);
     subtitle->setWindowFlags(Qt::FramelessWindowHint);
     //subtitle->setAttribute(Qt::WA_OpaquePaintEvent);
     subtitle->setAttribute(Qt::WA_NoSystemBackground,true);
-    subtitle->resize(MainWindow::width(), MainWindow::height()-150);
+    subtitle->resize(MainWindow::width()/2, MainWindow::height()-150);
     subtitle->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
 
     //display->setLocale()
@@ -151,9 +153,8 @@ void MainWindow::keyPressEvent(QKeyEvent *key)
 
 void MainWindow::resizeEvent(QResizeEvent* event)
 {
-    qDebug() << event->size();
-    subtitle->resize(MainWindow::width(), MainWindow::height()-150);
-
+    subtitle->setGeometry(MainWindow::width()/4,0,0,0);
+    subtitle->resize(MainWindow::width()/2, MainWindow::height()-150);
     QMainWindow::resizeEvent(event);
 }
 
