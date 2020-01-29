@@ -73,6 +73,7 @@ private:
     QGraphicsScene* scene;
     QGraphicsVideoItem * item;
     Subtitles subs;
+    Subtitle curr_sub;
 };
 
 #endif // MAINWINDOW_H

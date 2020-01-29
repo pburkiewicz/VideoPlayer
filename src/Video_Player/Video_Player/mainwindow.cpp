@@ -59,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
     effect->setColor(QColor("#000000"));
     effect->setOffset(5,5);
     subtitle->setGraphicsEffect(effect);
-    subtitle->setText("Napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy ");
+    subtitle->setText("");
     subtitle->setAlignment(Qt::AlignBottom | Qt::AlignCenter);
     subtitle->setWindowFlags(Qt::FramelessWindowHint);
     //subtitle->setAttribute(Qt::WA_OpaquePaintEvent);
@@ -81,7 +81,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_subtitle_change()
 {
-
+    subs.pop();
 
 }
 
