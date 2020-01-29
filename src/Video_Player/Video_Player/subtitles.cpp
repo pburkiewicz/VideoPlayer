@@ -8,6 +8,8 @@ using namespace std;
 Subtitles::Subtitles()
 {
     actual=0;
+    pathToRead="plik.txt";
+    pathToWrite="test.txt";
 }
 
 void Subtitles::read()
@@ -53,15 +55,22 @@ Subtitle Subtitles::pop()
 {
     if(this->actual<=this->data.size())
         return this->data[this->actual++];
+    else {
+        Subtitle s;
+        s.begin=SIZE_MAX;
+        s.end=SIZE_MAX;
+        s.contents="";
+        return s;
+    }
 }
 
-void Subtitles::find(int msek)
+void Subtitles::find(size_t msek)
 {
-    int i=-1;
+    unsigned long i=0;
     for (auto j : this->data)
     {
-        i++;
         if(j.begin>msek) break;
+        i++;
     }
     this->actual=i;
 }
