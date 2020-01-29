@@ -9,9 +9,9 @@ using namespace std;
 
 struct Subtitle
 {
-    int begin;
+    size_t begin;
     string contents;
-    int end;
+    size_t end;
 };
 
 
@@ -27,7 +27,7 @@ public:
     void read();
     void write();
     Subtitle pop();
-    void find(int msek);
+    void find(size_t msek);
 };
 
 #endif // SUBTITLES_H
