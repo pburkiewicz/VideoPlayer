@@ -109,6 +109,7 @@ void MainWindow::on_place_change()
     subtitle->setText("");
     qDebug()<<"FIND!";
     find((unsigned long long)player->position());
+    curr_sub=subs.pop();
 
 }
 
