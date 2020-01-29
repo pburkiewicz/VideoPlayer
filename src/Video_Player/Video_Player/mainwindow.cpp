@@ -9,12 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-//    QWidget* cw= new QWidget;
-//    QDockWidget *dockWidget = new QDockWidget(tr("Dock Widget"), this);
-//    dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea |
-//                                   Qt::RightDockWidgetArea);
-//    //dockWidget->setWidget(dockWidgetContents);
-//    addDockWidget(Qt::LeftDockWidgetArea, dockWidget);
+
     ui->setupUi(this);
     auto scene = new QGraphicsScene(this);
     auto display = new QGraphicsView(scene);
@@ -38,9 +33,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect(display,&VideoWidget::fullscreen_return,this,&MainWindow::on_fullscreen_return);
 
 
-
-
-
     //volume
     volume = new QSlider(this);
     volume->setOrientation(Qt::Horizontal);
@@ -61,14 +53,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     subtitle = new QLabel(display);
-    subtitle->setStyleSheet("color: white; background-color: red");
+    subtitle->setStyleSheet("color: red;");
     subtitle->setText("Napisy, napisy, napisy");
     subtitle->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
     subtitle->setWindowFlags(Qt::FramelessWindowHint);
     //subtitle->setAttribute(Qt::WA_OpaquePaintEvent);
     subtitle->setAttribute(Qt::WA_NoSystemBackground,true);
-
-    subtitle->setGeometry(100,100,100,100);
+    subtitle->resize(MainWindow::width(), MainWindow::height()-150);
     subtitle->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
 
     //display->setLocale()
@@ -156,6 +147,14 @@ void MainWindow::keyPressEvent(QKeyEvent *key)
         on_actionFullScreen_triggered();
     }
 
+}
+
+void MainWindow::resizeEvent(QResizeEvent* event)
+{
+    qDebug() << event->size();
+    subtitle->resize(MainWindow::width(), MainWindow::height()-150);
+
+    QMainWindow::resizeEvent(event);
 }
 
 void MainWindow::on_FullScreenButton_clicked()

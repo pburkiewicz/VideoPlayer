@@ -26,7 +26,7 @@ public:
 
 protected:
     void keyPressEvent(QKeyEvent* key);
-
+    void resizeEvent(QResizeEvent* event);
 private slots:
 
 
