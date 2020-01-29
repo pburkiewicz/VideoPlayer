@@ -112,11 +112,23 @@ void MainWindow::on_actionStop_triggered()
 
 void MainWindow::on_actionFullScreen_triggered()
 {
-
-    //display->setParent(nullptr);
-    //display->showFullScreen();
-    //display->fitInView(QApplication::desktop()->availableGeometry(-1), Qt::IgnoreAspectRatio);
-
+    if (!isFullScreen())
+    {
+    this->setWindowFlags( Qt::FramelessWindowHint);
+    ui->mainToolBar->hide();
+    ui->statusBar->hide();
+    ui->menuBar->hide();
+    this->showFullScreen();
+    }
+    else
+    {
+        //auto flag = this->windowFlags();
+        //this->setWindowFlag(flag & (~Qt::FramelessWindowHint));
+        ui->mainToolBar->show();
+        ui->statusBar->show();
+        ui->menuBar->show();
+        this->showNormal();
+    }
 }
 
 void MainWindow::on_fileButton_clicked()
@@ -143,7 +155,7 @@ void MainWindow::on_pauseButton_clicked()
 
 void MainWindow::keyPressEvent(QKeyEvent *key)
 {
-    if(key->key()==Qt::Key_Escape ||key->key()==Qt::Key_T )
+    if((key->key()==Qt::Key_Escape ||key->key()==Qt::Key_T))
     {
         on_actionFullScreen_triggered();
     }
