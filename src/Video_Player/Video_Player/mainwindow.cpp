@@ -81,6 +81,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_subtitle_change()
 {
+    if(curr_sub.end==0)
+    {
+        return;
+    }
     qDebug()<<"sub";
     if ( subtitle->text()!=QString::fromStdString(curr_sub.contents)&& player->position()>=curr_sub.begin )
     {
@@ -108,7 +112,7 @@ void MainWindow::on_place_change()
 {
     subtitle->setText("");
     qDebug()<<"FIND!";
-    find((unsigned long long)player->position());
+    find((size_t)player->position());
     curr_sub=subs.pop();
 
 }
