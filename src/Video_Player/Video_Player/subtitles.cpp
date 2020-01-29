@@ -1,78 +1,75 @@
 #include "subtitles.h"
 #include <fstream>
 #include <iostream>
+#include <QDebug>
 
 using namespace std;
 
 void Subtitles::read()
 {
+    //qDebug()<<"ERROR 10";
     fstream plik;
     plik.open("plik.txt",ios::in);
     if(plik.good()==false)
     {
-        cout<<"ERROR open";
+        qDebug()<<"ERROR open";
+        return;
     }
-    Subtitle s;
-    while(!plik.eof())
+
+    for(int i=0;i<5;i++)
     {
-        this->data.push_back(s);
-        char temp;
-        char temp2;
+        //qDebug()<<"ERROR 11";
+        Subtitle s;
+        string temp;
         plik>>temp;
-        if (temp=='<')
+        if (temp=="<<")
         {
-            plik>>temp2;
-            if(temp2=='<')
-                plik>>this->data.back().begin;
+            plik>>s.begin;
         }
-        plik>>temp;
         plik>>temp;// wczytaj >>
-        plik>>temp;
-        while(temp!='<')
+        temp="";
+        while(temp!="<<")
         {
-            this->data.back().contents.push_back(temp);
+            s.contents+=(temp+" ");
             plik>>temp;
         }
-        plik>>temp2;
-        if(temp2=='<')
-            plik>>this->data.back().end;
+        //qDebug()<<"ERROR 12";
+        plik>>s.end;
         plik>>temp;
-        plik>>temp;// wczytaj >>
+        this->data.push_back(s);
         continue;
     }
+    this->data.shrink_to_fit();
     plik.close();
 }
 
 
 void Subtitles::search(int actual_time)
 {
-
+    cout<<actual_time;
 }
 
 void Subtitles::write()
 {
+    //qDebug()<<"ERROR 0";
     fstream plik;
     plik.open("test.txt",ios::app);
     if(plik.good()==false)
     {
-        cout<<"ERROR open";
+        qDebug()<<"ERROR open";
         return;
     }
 
-    Subtitles object{};
-
-
-    for (auto i : object.data)
+    for (auto i : this->data)
     {
-        plik << "<<";
+        //qDebug()<<"ERROR 1";
+        plik << "<< ";
         plik << i.begin;
-        plik << ">>";
-        for (auto x: i.contents)
-        plik << x;
-        plik << "<<";
+        plik << " >>";
+        plik << i.contents;
+        plik << "<< ";
         plik << i.end;
-        plik << ">>";
-        plik << '\n';
+        plik << " >>\n";
     }
     plik.close();
 
