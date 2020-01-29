@@ -61,6 +61,9 @@ MainWindow::MainWindow(QWidget *parent) :
     subtitle->resize(MainWindow::width()/2, MainWindow::height()-150);
     subtitle->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
     item->setSize(this->size());
+
+
+
 }
 
 
@@ -82,16 +85,7 @@ void MainWindow::on_actionChoose_file_triggered()
 
 void MainWindow::on_fullscreen_return()
 {
-    qDebug()<<"XD";
 
-    for (int i=0; i<100;++i)
-    {
-    //display->setParent(nullptr);
-    //display->setParent(this);
-    //display->setFullScreen(0);
-    //display->showNormal();
-    //this->setCentralWidget(display);
-    }
 }
 
 void MainWindow::on_actionPlay_triggered()
@@ -124,6 +118,9 @@ void MainWindow::on_actionFullScreen_triggered()
     {
         //auto flag = this->windowFlags();
         //this->setWindowFlag(flag & (~Qt::FramelessWindowHint));
+        Qt::WindowFlags flags;
+        flags = flags & (~Qt::FramelessWindowHint);
+        this->setWindowFlags(flags);
         ui->mainToolBar->show();
         ui->statusBar->show();
         ui->menuBar->show();
