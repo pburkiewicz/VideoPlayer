@@ -19,7 +19,7 @@ class Subtitles:public QWidget
 {
 public:
     vector <Subtitle> data;
-    int actual=0;
+    size_t actual=0;
     string pathToRead;
     string pathToWrite;
 

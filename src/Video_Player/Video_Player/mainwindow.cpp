@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "subtitles.h"
 #include <QDockWidget>
 #include <QGraphicsDropShadowEffect>
 #include <QStyle>
@@ -96,14 +96,18 @@ void MainWindow::on_subtitle_change()
 void MainWindow::on_subtitle_choosen()
 {
 
+
     curr_sub = subs.pop();
+
     connect(player,&QMediaPlayer::positionChanged,this,&MainWindow::on_subtitle_change);
     connect(slider,&QSlider::valueChanged,this,&MainWindow::on_place_change);
 }
 
 void MainWindow::on_place_change()
 {
+
     find((unsigned long long)player->position());
+
 }
 
 void MainWindow::on_actionChoose_file_triggered()
@@ -154,6 +158,7 @@ void MainWindow::on_actionFullScreen_triggered()
     }
 }
 
+
 void MainWindow::on_fileButton_clicked()
 {
     on_actionChoose_file_triggered();
@@ -198,3 +203,14 @@ void MainWindow::on_FullScreenButton_clicked()
     on_actionFullScreen_triggered();
 }
 
+
+void MainWindow::on_actionAdd_subtitles_triggered()
+{
+    QString File = QFileDialog::getOpenFileName(this, tr("Choose subtitle file"),"",tr("Subtitle File (*.txt)"));
+    //on_actionStop_triggered();
+    subs.pathToRead= File.toStdString();
+    connect(player,&QMediaPlayer::positionChanged,this,&MainWindow::on_subtitle_change);
+    connect(slider,&QSlider::valueChanged,this,&MainWindow::on_place_change);
+    //player->setMedia(QUrl::fromLocalFile(File));
+    //on_actionPlay_triggered();
+}

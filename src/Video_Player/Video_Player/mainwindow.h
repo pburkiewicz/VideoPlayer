@@ -45,6 +45,7 @@ private slots:
 
     void on_actionFullScreen_triggered();
 
+    void on_actionAdd_Subtitle_triggered();
     void on_fileButton_clicked();
 
     void on_PlayButton_clicked();
@@ -62,6 +63,8 @@ private slots:
     void on_place_change();
 
     void on_subtitle_choosen();
+
+    void on_actionAdd_subtitles_triggered();
 
 private:
     Ui::MainWindow *ui;
