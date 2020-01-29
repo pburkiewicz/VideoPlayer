@@ -26,6 +26,7 @@ public:
     ~MainWindow() override;
 
 protected:
+
     void keyPressEvent(QKeyEvent* key)override;
      void resizeEvent(QResizeEvent *event)override;
 

@@ -30,9 +30,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect(display,&VideoWidget::fullscreen_return,this,&MainWindow::on_fullscreen_return);
 
 
-
-
-
     //volume
     volume = new QSlider(this);
     volume->setOrientation(Qt::Horizontal);
@@ -53,13 +50,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     subtitle = new QLabel(display);
-    subtitle->setStyleSheet("color: white; background-color: red");
-    subtitle->setText("Napisy, napisy, napisy");
-    subtitle->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
+   // display->setAlignment()
+    subtitle->setStyleSheet("color: red; font-size: 25px;");
+    subtitle->setWordWrap(true);
+    subtitle->setText("Napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy ");
+    subtitle->setAlignment(Qt::AlignBottom | Qt::AlignCenter);
     subtitle->setWindowFlags(Qt::FramelessWindowHint);
     //subtitle->setAttribute(Qt::WA_OpaquePaintEvent);
     subtitle->setAttribute(Qt::WA_NoSystemBackground,true);
-    subtitle->setGeometry(100,100,100,100);
+    subtitle->resize(MainWindow::width()/2, MainWindow::height()-150);
     subtitle->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
     item->setSize(this->size());
 }
@@ -151,13 +150,16 @@ void MainWindow::keyPressEvent(QKeyEvent *key)
 
 }
 
+void MainWindow::resizeEvent(QResizeEvent* event)
+{
+    subtitle->setGeometry(MainWindow::width()/4,0,0,0);
+    subtitle->resize(MainWindow::width()/2, MainWindow::height()-150);
+    item->setSize(this->centralWidget()->size());
+    QMainWindow::resizeEvent(event);
+}
+
 void MainWindow::on_FullScreenButton_clicked()
 {
     on_actionFullScreen_triggered();
 }
 
-
-void MainWindow::resizeEvent(QResizeEvent *event)
-{
-    item->setSize(this->centralWidget()->size());
-}
