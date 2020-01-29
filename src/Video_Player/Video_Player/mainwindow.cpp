@@ -9,23 +9,15 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-//    QWidget* cw= new QWidget;
-//    QDockWidget *dockWidget = new QDockWidget(tr("Dock Widget"), this);
-//    dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea |
-//                                   Qt::RightDockWidgetArea);
-//    //dockWidget->setWidget(dockWidgetContents);
-//    addDockWidget(Qt::LeftDockWidgetArea, dockWidget);
     ui->setupUi(this);
-    auto scene = new QGraphicsScene(this);
+    scene = new QGraphicsScene(this);
     auto display = new QGraphicsView(scene);
     player = new QMediaPlayer(this);
-    QGraphicsVideoItem *item = new QGraphicsVideoItem;
+    item = new QGraphicsVideoItem;
     player->setVideoOutput(item);
     scene->addItem(item);
-
-
-   this->setCentralWidget(display);
-
+    this->setCentralWidget(display);
+    display->fitInView(scene->sceneRect(),Qt::KeepAspectRatio);
 
     slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
@@ -67,13 +59,12 @@ MainWindow::MainWindow(QWidget *parent) :
     subtitle->setWindowFlags(Qt::FramelessWindowHint);
     //subtitle->setAttribute(Qt::WA_OpaquePaintEvent);
     subtitle->setAttribute(Qt::WA_NoSystemBackground,true);
-
     subtitle->setGeometry(100,100,100,100);
     subtitle->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
-
-    //display->setLocale()
-
+    item->setSize(this->size());
 }
+
+
 
 MainWindow::~MainWindow()
 {
@@ -96,17 +87,18 @@ void MainWindow::on_fullscreen_return()
 
     for (int i=0; i<100;++i)
     {
-    display->setParent(nullptr);
-    display->setParent(this);
+    //display->setParent(nullptr);
+    //display->setParent(this);
     //display->setFullScreen(0);
-    display->showNormal();
-    this->setCentralWidget(display);
+    //display->showNormal();
+    //this->setCentralWidget(display);
     }
 }
 
 void MainWindow::on_actionPlay_triggered()
 {
     player->play();
+
 }
 
 void MainWindow::on_actionPause_triggered()
@@ -124,6 +116,7 @@ void MainWindow::on_actionFullScreen_triggered()
 
     //display->setParent(nullptr);
     //display->showFullScreen();
+    //display->fitInView(QApplication::desktop()->availableGeometry(-1), Qt::IgnoreAspectRatio);
 
 }
 
@@ -161,4 +154,10 @@ void MainWindow::keyPressEvent(QKeyEvent *key)
 void MainWindow::on_FullScreenButton_clicked()
 {
     on_actionFullScreen_triggered();
+}
+
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    item->setSize(this->centralWidget()->size());
 }

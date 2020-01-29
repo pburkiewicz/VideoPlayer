@@ -12,6 +12,7 @@
 #include <QGraphicsVideoItem>
 #include <QGraphicsView>
 
+
 namespace Ui {
 class MainWindow;
 }
@@ -22,10 +23,11 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 
 protected:
-    void keyPressEvent(QKeyEvent* key);
+    void keyPressEvent(QKeyEvent* key)override;
+     void resizeEvent(QResizeEvent *event)override;
 
 private slots:
 
@@ -60,6 +62,8 @@ private:
     QSlider* volume;
     QSlider* slider;
     QLabel* subtitle;
+    QGraphicsScene* scene;
+    QGraphicsVideoItem * item;
 };
 
 #endif // MAINWINDOW_H
