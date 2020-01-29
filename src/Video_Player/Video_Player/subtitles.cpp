@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <QDebug>
+#include <QString>
 
 using namespace std;
 
@@ -10,6 +11,7 @@ void Subtitles::read()
     //qDebug()<<"ERROR 10";
     fstream plik;
     plik.open(this->pathToRead,ios::in);
+     qDebug()<<QString::fromStdString(this->pathToRead);
     if(plik.good()==false)
     {
         qDebug()<<"ERROR open";
@@ -22,6 +24,7 @@ void Subtitles::read()
         Subtitle s;
         string temp;
         plik>>temp;
+        qDebug()<<QString::fromStdString(temp);
         if (temp=="<<")
         {
             plik>>s.begin;
@@ -32,6 +35,7 @@ void Subtitles::read()
         {
             s.contents+=(temp+" ");
             plik>>temp;
+            qDebug()<<QString::fromStdString(temp);
         }
         //qDebug()<<"ERROR 12";
         plik>>s.end;
