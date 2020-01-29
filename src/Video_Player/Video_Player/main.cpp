@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "subtitles.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -7,6 +8,9 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
+    auto xx= new Subtitles;
 
+    //xx->write();
+    xx->write();
     return a.exec();
 }

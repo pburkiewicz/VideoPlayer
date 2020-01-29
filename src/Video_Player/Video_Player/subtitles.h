@@ -16,9 +16,11 @@ struct Subtitle
 
 class Subtitles:public QWidget
 {
+public:
     vector <Subtitle> data;
 
     void read();
+    void write();
     void search(int actual_time);
     //void
 };

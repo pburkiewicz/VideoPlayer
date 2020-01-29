@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    videowidget.cpp
+    videowidget.cpp \
+    subtitles.cpp
 
 HEADERS += \
         mainwindow.h \
-    videowidget.h
+    videowidget.h \
+    subtitles.h
 
 FORMS += \
         mainwindow.ui
