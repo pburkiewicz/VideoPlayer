@@ -81,22 +81,29 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_subtitle_change()
 {
-    subs.pop();
 
+    if (player->position()>=curr_sub.begin && subtitle->text()!=QString::fromStdString(curr_sub.contents))
+    {
+        if (player->position()>=curr_sub.end)
+        {
+            curr_sub = subs.pop();
+            return;
+        }
+        subtitle->setText(QString::fromStdString(curr_sub.contents));
+    }
 }
 
 void MainWindow::on_subtitle_choosen()
 {
 
-
+    curr_sub = subs.pop();
     connect(player,&QMediaPlayer::positionChanged,this,&MainWindow::on_subtitle_change);
     connect(slider,&QSlider::valueChanged,this,&MainWindow::on_place_change);
 }
 
 void MainWindow::on_place_change()
 {
-
-
+    find((unsigned long long)player->position());
 }
 
 void MainWindow::on_actionChoose_file_triggered()
