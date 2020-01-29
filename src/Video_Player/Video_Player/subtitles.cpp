@@ -6,6 +6,11 @@
 
 using namespace std;
 
+Subtitles::Subtitles()
+{
+    actual=0;
+}
+
 void Subtitles::read()
 {
     //qDebug()<<"ERROR 10";
@@ -50,7 +55,8 @@ void Subtitles::read()
 
 Subtitle Subtitles::pop()
 {
-    return this->data[this->actual++];
+    if(this->actual<=this->data.size())
+        return this->data[this->actual++];
 }
 
 void Subtitles::find(int msek)

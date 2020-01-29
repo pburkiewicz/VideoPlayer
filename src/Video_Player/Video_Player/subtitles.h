@@ -23,6 +23,7 @@ public:
     string pathToRead;
     string pathToWrite;
 
+    Subtitles();
     void read();
     void write();
     Subtitle pop();
