@@ -11,10 +11,38 @@ void Subtitles::read()
     if(plik.good()==false)
     {
         cout<<"ERROR open";
-        return;
     }
-
+    Subtitle s;
+    while(!plik.eof())
+    {
+        this->data.push_back(s);
+        char temp;
+        char temp2;
+        plik>>temp;
+        if (temp=='<')
+        {
+            plik>>temp2;
+            if(temp2=='<')
+                plik>>this->data.back().begin;
+        }
+        plik>>temp;
+        plik>>temp;// wczytaj >>
+        plik>>temp;
+        while(temp!='<')
+        {
+            this->data.back().contents.push_back(temp);
+            plik>>temp;
+        }
+        plik>>temp2;
+        if(temp2=='<')
+            plik>>this->data.back().end;
+        plik>>temp;
+        plik>>temp;// wczytaj >>
+        continue;
+    }
+    plik.close();
 }
+
 
 void Subtitles::search(int actual_time)
 {
