@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QDockWidget>
+#include <QGraphicsDropShadowEffect>
 #include <QStyle>
 
 
@@ -51,8 +52,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     subtitle = new QLabel(display);
    // display->setAlignment()
-    subtitle->setStyleSheet("color: red; font-size: 25px;");
+    subtitle->setStyleSheet("color: white; font-family: 'Helvetica Neue'; text-shadow: 10px black; font-size: 30px;");
     subtitle->setWordWrap(true);
+
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    effect->setBlurRadius(0);
+    effect->setColor(QColor("#000000"));
+    effect->setOffset(5,5);
+    subtitle->setGraphicsEffect(effect);
     subtitle->setText("Napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy, napisy ");
     subtitle->setAlignment(Qt::AlignBottom | Qt::AlignCenter);
     subtitle->setWindowFlags(Qt::FramelessWindowHint);
