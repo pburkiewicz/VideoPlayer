@@ -81,6 +81,24 @@ MainWindow::~MainWindow()
 
 }
 
+void MainWindow::on_subtitle_change()
+{
+
+
+}
+
+void MainWindow::on_subtitle_choosen()
+{
+
+
+}
+
+void MainWindow::on_place_change()
+{
+
+
+}
+
 void MainWindow::on_actionChoose_file_triggered()
 {
     QString File = QFileDialog::getOpenFileName(this, tr("Choose film file"),"",tr("Video File (*.avi *.3gp *.mp4 *.flv *.ogv *.webm)"));
@@ -90,10 +108,6 @@ void MainWindow::on_actionChoose_file_triggered()
     on_actionPlay_triggered();
 }
 
-void MainWindow::on_fullscreen_return()
-{
-
-}
 
 void MainWindow::on_actionPlay_triggered()
 {
@@ -123,8 +137,6 @@ void MainWindow::on_actionFullScreen_triggered()
     }
     else
     {
-        //auto flag = this->windowFlags();
-        //this->setWindowFlag(flag & (~Qt::FramelessWindowHint));
         Qt::WindowFlags flags;
         flags = flags & (~Qt::FramelessWindowHint);
         this->setWindowFlags(flags);
