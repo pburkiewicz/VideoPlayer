@@ -2,6 +2,7 @@
 #define SUBTITLES_H
 
 #include <vector>
+#include <string>
 #include <QWidget>
 
 using namespace std;
@@ -9,7 +10,7 @@ using namespace std;
 struct Subtitle
 {
     int begin;
-    vector <char> contents;
+    string contents;
     int end;
 };
 
