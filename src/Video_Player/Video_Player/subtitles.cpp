@@ -44,9 +44,20 @@ void Subtitles::read()
 }
 
 
-void Subtitles::search(int actual_time)
+Subtitle Subtitles::push()
 {
-    cout<<actual_time;
+    return this->data[this->actual++];
+}
+
+void Subtitles::find(int msek)
+{
+    int i=-1;
+    for (auto j : this->data)
+    {
+        i++;
+        if(j.begin>msek) break;
+    }
+    this->actual=i;
 }
 
 void Subtitles::write()
