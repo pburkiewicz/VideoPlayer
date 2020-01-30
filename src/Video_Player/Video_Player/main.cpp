@@ -20,6 +20,8 @@ int main(int argc, char *argv[])
 
     xx->read();
     xx->write();
+<<<<<<< HEAD
     */
+
     return a.exec();
 }
