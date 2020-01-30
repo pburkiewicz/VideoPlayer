@@ -57,12 +57,12 @@ void Subtitles::read()
 
 Subtitle Subtitles::pop()
 {
-    if(this->actual<=this->data.size())
+    if(this->actual<this->data.size())
         return this->data[this->actual++];
     else {
         Subtitle s;
-        s.begin=SIZE_MAX;
-        s.end=SIZE_MAX;
+        s.begin=0;
+        s.end=0;
         s.contents="";
         return s;
     }
@@ -71,10 +71,9 @@ Subtitle Subtitles::pop()
 void Subtitles::find(size_t msek)
 {
     unsigned long i=0;
-    for (auto j : this->data)
+    for(;i<this->data.size();i++)
     {
-        if(j.begin>msek) break;
-        i++;
+        if(this->data[i].begin>msek) break;
     }
     this->actual=i;
 }

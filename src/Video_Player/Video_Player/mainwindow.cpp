@@ -114,6 +114,8 @@ void MainWindow::on_place_change()
     qDebug()<<"FIND!";
     find((size_t)player->position());
     curr_sub=subs.pop();
+    qDebug()<<curr_sub.end;
+    subtitle->setText(QString::fromStdString(curr_sub.contents));
 
 }
 
